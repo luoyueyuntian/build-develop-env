@@ -1,0 +1,53 @@
+const path = require('path')
+
+module.exports = {
+    entry: path.resolve('./src/index.js'),
+    module: {
+        rules: [
+            { test: /\.css$/, use: 'css-loader' },
+            {
+                test: /\.less$/,
+                use: [{
+                    loader: 'style-loader',
+                }, {
+                    loader: 'css-loader'
+                }, {
+                    loader: 'less-loader'
+                }]
+            },
+            { test: /\.ts$/, use: 'ts-loader' },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [require.resolve('babel-preset-react-app')]
+                    }
+                }
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader'
+                ]
+            }
+        ]
+    },
+    optimization: {
+        splitChunks: {
+            name: 'common'
+        }
+    },
+    output: {
+        filename: '[name].[hash].js',
+        chunkFilename: '[name].[chunkhash].js',
+        path: path.resolve(__dirname, 'dist')
+    }
+}
