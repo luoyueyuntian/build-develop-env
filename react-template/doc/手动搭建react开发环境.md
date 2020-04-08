@@ -1,9 +1,10 @@
-## 初始化项目
+## 不使用官方脚手架搭建一个react项目
+### 初始化项目
 ##### 新建一个空目录，初始化项目
 <pre><code>npm init</code></pre>
 按照提示一步步执行，设置项目名称等信息，大多数可使用默认，即可创建项目的`package.josn`文件
 
-## 安装开发环境依赖
+### 安装开发环境依赖
 ##### 安装webpack
 <pre><code>npm install webpack webpack-cli webpack-dev-server -save-dev</code></pre>
 + `webpack`：打包工具
@@ -44,7 +45,7 @@
 ##### 安装normalize.css
 <pre><code>npm install normalize.css -save</code></pre>
 
-## 配置webpack.config.js文件，搭建开发环境
+### 配置webpack.config.js文件，搭建开发环境
 ##### 配置文件入口
 改模板只有一个入口，因此简单配置如下：
 <pre><code>entry: path.resolve('./src/index.js')</code></pre>
@@ -101,11 +102,15 @@ webpack只能处理js文件，对于`html`、`css`、`png\jpg\gif`等其他文�
     hot: true,
     open: true,
     port: 8800
-}
+},
+devtool: 'inline-source-map'
 </code></pre>
 + `hot: true`表示启用 webpack 的模块热替换特性，当文件修改后，webpack自动编译更新后会自动替换文件内容，浏览器不需要刷新就可以看到修改后的效果
 + `open: true`表示启动`webpack-dev-server`后自动打开浏览器，并加载默认页面
 + `port: 8800`表示打开的端口，可以不配置，`webpack-dev-server`会自动使用一个未使用的端口来加载页面
+
+`devtool`是用来控制生产`source map`的工具，在开发环境时，我们需要使用source map来定位出问题的代码行数，生产环境则可以不用生成source map，或者生成少量的source map。
+
 
 其他一些有用的配置：
 + `https: true`: 使用https协议
@@ -124,13 +129,30 @@ webpack只能处理js文件，对于`html`、`css`、`png\jpg\gif`等其他文�
 + `chunkFilename: '[name].[chunkhash].js'`: 非入口(non-entry) chunk 文件的名称s
 + `path: path.resolve(__dirname, 'dist')`:用来指定打包编译完后输出的文件目录
 
-##### 代码压缩
+##### 代码压缩与提取公共代码
+开发环境和生产环境对于代码的打包有不同的要求，开发环境需要一些调试信息，所以代码不要求极致压缩，但部署到生产环境时，因为用户访问服务时的网络环境是不确定的，而且我们总是希望用户能够尽快看到我们的页面，不希望页面加载时间过长，所以会对代码进行压缩，这个压缩包括去掉空行和注释，还包括代码混淆，另外通过`treeShaking`来去掉源码中没有用到的代码，可以进一步压缩代码。
 
+开启`treeShaking`需要在`package.json` 的通过 `sideEffects` 属性来指定哪些文件是无副作用的，可以安全的删除么有引用到的代码。通过设置为`false`可以将所有代码都标记为无副作用的，也可以通过一个数组，来指定哪些代码是有副作用的，不要删除里面没有引用到的代码。
+
+对于一些公用的模块，如果每个bundle都生成一份，显然是冗余的，可以在webpack构建时，使用插件将这些公共的代码提取到一个公共的模块中，这样就可以避免一些不必要的重复代码，在最新webpack4中，可以通过`optimization.splitChunks`配置实现这个功能：
 <pre><code>optimization: {
     splitChunks: {
-        name: 'common'
+        splitChunks: {
+            cacheGroups: {
+                name: 'commons',
+                chunks: 'initial',
+                minChunks: 2
+            }
+        }
     }
 }
 </code></pre>
-##### 插件
+具体配置可参考[SplitChunksPlugin配置](https://webpack.js.org/plugins/split-chunks-plugin/)
 
+##### 插件
+loader只能对一种文件进行处理，而且只在文件的加载阶段处理代码，而plugin可以在构建的任何阶段对任何代码进行处理，所以plugin能够做更多的事情。构建过程中的代码压缩、代码拆分就是通过插件实现的。
+
++ CleanWebpackPlugin：官方推荐的删除上次编译文件的插件
++ HtmlWebpackPlugin：用于将编译完的代码通过script标签插入到HTMl文件中的插件，该插件很重要，我们编译生成的文件，文件名都是动态的，手工引入显然麻烦且不靠谱，使用该插件可以完美处理这些问题，该插件还支持自定义HTML模板，在模板中插入一些内容，控制插入的位置等配置。
++ webpack.HotModuleReplacementPlugin：热加载插件，用于开发环境不熟悉页面更新代码。
++ webpack.NamedModulesPlugin：当开启 HMR 的时候使用该插件会显示模块的相对路径，建议用于开发环境。 
