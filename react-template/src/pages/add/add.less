@@ -1,0 +1,65 @@
+.add-container {
+    width: 460px;
+}
+
+.todo-item {
+    display: flex;
+    margin: 20px 0;
+
+    .title {
+        width: 160px;
+        text-align: right;
+    }
+
+    textarea {
+        flex: 1;
+    }
+
+    .time-select-container {
+        flex: 1;
+        display: flex;
+        border: 1px solid #666;
+        border-radius: 8px;
+        
+        .btn {
+            width: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 36px;
+        }
+        
+        .btn-minus-time {
+            border-right: 1px solid #666;
+        }
+        
+        .time-select {
+            flex: 1;
+            margin: 0 10px;
+            border: transparent;
+        }
+
+        .btn-add-time {
+            border-left: 1px solid #666;
+        }
+    }
+}
+
+.bottom {
+    text-align: center;
+}
+
+.btn-cancel,
+.btn-save {
+    display: inline-block;
+    width: 35%;
+    height: 40px;
+    margin: 0 20px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #0099ff;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}

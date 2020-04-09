@@ -42,7 +42,14 @@ module.exports = {
     },
     optimization: {
         splitChunks: {
-            name: 'common'
+            chunks: 'async',
+            name: 'common',
+            minSize: 0,
+            maxSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 6,
+            maxInitialRequests: 4,
+            automaticNameDelimiter: '~'
         }
     },
     output: {

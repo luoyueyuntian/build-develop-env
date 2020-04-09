@@ -15,7 +15,6 @@ module.exports = merge(baseConfig, {
             title: 'To Do List',
             favicon: '',
             meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
-        }),
-        new webpack.NamedModulesPlugin()
+        })
     ]
 })
