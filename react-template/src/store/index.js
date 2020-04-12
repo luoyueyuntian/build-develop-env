@@ -1,4 +1,7 @@
 import { createStore } from 'redux'
-import { reduce } from './reduces'
+import { reduces } from './reduces'
+import initData from './data'
 
-export const store = createStore(reduce)
+export const store = createStore(reduces, initData)
+
+const unsubscribe = store.subscribe(() => console.log(store.getState()))

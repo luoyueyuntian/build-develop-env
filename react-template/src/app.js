@@ -23,7 +23,7 @@ class App extends React.Component {
                     <Route path="/add">
                         <Add/>
                     </Route>
-                    <Route path="/edit">
+                    <Route path="/edit/:index">
                         <Edit/>
                     </Route>
                     <Route path="/">

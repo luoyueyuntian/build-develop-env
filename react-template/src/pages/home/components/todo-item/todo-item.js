@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import './todo-item.less'
 
-const TodoItem = (porps) => {
+import { TODO_STATUS_NAME } from '../../../../common/constant/index'
+import style from './todo-item.less'
+
+const TodoItem = (props) => {
     return (
-        <Link to="/edit" className="todo-item-container">
-            <div className="seq">{porps.index}</div>
-            <div className="content">{porps.name}</div>
-            <div className="badget">{porps.state}</div>
+        <Link to={'/edit/' + props.index} className={style['todo-item-containers']}>
+            <div className={style[seq]}>{props.index}</div>
+            <div className={style.content}>{props.name}</div>
+            <div className={style.badget}>{TODO_STATUS_NAME[props.state || 0]}</div>
         </Link>
     )
 }
