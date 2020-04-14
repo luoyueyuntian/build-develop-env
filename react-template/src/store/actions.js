@@ -5,10 +5,11 @@ import { TODO_STATUS } from '../common/constant/index'
  * 增加待完成事项
  * @param {object} param0 
  */
-export const addTodo = ({ name, unit, count }) => {
+export const addTodo = ({ name, desc, unit, count }) => {
     return {
         type: ADD_TODO,
         name,
+        desc,
         unit,
         count,
         status: TODO_STATUS.WAIT_TO_DO

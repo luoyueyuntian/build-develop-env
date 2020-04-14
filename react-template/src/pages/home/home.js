@@ -14,7 +14,7 @@ class Home extends React.Component {
     render () {
         const list = this.props.todoList.map((item, index) => <TodoItem key={index} index={index} {...item}/>)
         const filter = ['未开始', '进行中', '搁置中', '已完成'].map((item, index) => (
-            <li data-id={index} key={index} className={style.status}>{item}</li>
+            <li data-id={index} data-type="eidt" key={index} className={style.status}>{item}</li>
         ))
         return (
             <div className={style.container}>

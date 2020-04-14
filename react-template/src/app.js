@@ -7,8 +7,7 @@ import {
 
 
 import Home from './pages/home/home'
-import Edit from './pages/edit/eidt'
-import Add from './pages/add/add'
+import EditTodo from './pages/edit-todo/eidt-todo'
 
 class App extends React.Component {
     constructor (props) {
@@ -21,10 +20,10 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route path="/add">
-                        <Add/>
+                        <EditTodo/>
                     </Route>
-                    <Route path="/edit/:index">
-                        <Edit/>
+                    <Route path="/edit">
+                        <EditTodo/>
                     </Route>
                     <Route path="/">
                         <Home/>

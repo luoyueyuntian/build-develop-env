@@ -68,8 +68,8 @@ TodeDetailComonent.propTypes = {
 const TodoEditComponent = (props) => {
     return (
         <div>
-            <TodoNameComponent detail={props.detail} inputTodeName={props.inputTodeName}/>
-            <TodeDetailComonent todoName={props.todoName} inputTodeName={props.inputTodeDetail}/>
+            <TodoNameComponent todoName={props.todoName} inputTodeName={props.inputTodeName}/>
+            <TodeDetailComonent detail={props.detail} inputTodeDetail={props.inputTodeDetail}/>
             <TimeEditComponent unit={props.unit}  count={props.count} updateTimeCount = {props.updateTimeCount} updateUnit ={props.updateUnit} />
         </div>
     )
