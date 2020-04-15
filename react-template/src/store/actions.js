@@ -1,18 +1,17 @@
 import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX } from './action-types'
-import { TODO_STATUS } from '../common/constant/index'
 
 /**
  * 增加待完成事项
  * @param {object} param0 
  */
-export const addTodo = ({ name, desc, unit, count }) => {
+export const addTodo = ({ name, desc, unit, count, status }) => {
     return {
         type: ADD_TODO,
         name,
         desc,
         unit,
         count,
-        status: TODO_STATUS.WAIT_TO_DO
+        status
     }
 }
 
@@ -34,12 +33,14 @@ export const deleteTodo = (id) => {
  * @param {string} excepetTime 
  * @param {number} status 
  */
-export const updateTodo = (id, name, excepetTime, status) => {
+export const updateTodo = ({id, name, desc, unit, count, status}) => {
     return {
         type: UPDATE_TODO,
         id,
         name,
-        excepetTime,
+        desc,
+        unit,
+        count,
         status
     }
 }

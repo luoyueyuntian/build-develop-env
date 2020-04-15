@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX } from './action-types'
-import { TODO_STATUS} from '../common/constant/index'
 import { generateTodoId } from '../common/utils/index'
 
 /**
@@ -13,9 +12,9 @@ const addTodo = (state, newTodo) => {
         id: generateTodoId(),
         name: newTodo.name,
         desc: newTodo.desc,
-        status: TODO_STATUS.WAIT_TO_DO,
         unit: newTodo.unit,
-        count: newTodo.count
+        count: newTodo.count,
+        status: newTodo.status
     })
 }
 
@@ -33,14 +32,15 @@ const deleteTodo = (state, todoId) => {
  * @param {object} state 
  * @param {object} param1 
  */
-const updateTodo = (state, { todoId, name, desc, status, excepetTime }) => {
+const updateTodo = (state, { id, name, desc, unit, count, status }) => {
     return state.map(item => {
-        if (item.id !== todoId) return item
+        if (item.id !== id) return item
         let newItem = { ...item }
         if (name) newItem.name = name
         if (desc) newItem.desc = desc
         if (status) newItem.status = status
-        if (excepetTime) newItem.excepetTime = excepetTime
+        if (unit) newItem.unit = unit
+        if (count) newItem.count = count
         return newItem
     })
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
-import { TODO_STATUS_NAME } from '../../common/constant/index'
+import { TODO_STATUS_NAME, TODO_STATUS_NAME_MAP } from '../../common/constant/index'
 import { addTodo, updateTodo } from '../../store/actions'
 
 import TodoEditComponent from '../../components/todo-edit-component/todo-edit-component'
@@ -16,7 +16,7 @@ class EditTodoComponent extends React.Component {
     constructor (props) {
         super(props)
         const { index = 0, pathname = '/add' } = props.location
-        const curTodos = pathname === '/edit' ? props.todos[index] : {
+        const curTodos = pathname === '/edit' && index < props.todos.length ? props.todos[index] : {
             name: '',
             desc: '',
             unit: '小时',
@@ -69,27 +69,43 @@ class EditTodoComponent extends React.Component {
         history.goBack()
     }
     save () {
-        const { todoName, desc, unit, count } = this.state
+        const { todoName, desc, unit, count, status } = this.state
         if (this.state.pageTitle === pageTitleMap['/add']) {
             this.props.addTodo({
                 name: todoName,
                 desc,
                 unit,
-                count
+                count,
+                status
             })
         } else if (this.state.pageTitle === pageTitleMap['/edit']) {
-            this.props.updateTode({
-                id: this.props.todos[this.props.location.index],
-                name: todoName,
-                desc,
-                unit,
-                count
-            })
+            if (this.props.location.index < this.props.todos.length) {
+                this.props.updateTodo({
+                    id: this.props.todos[this.props.location.index].id,
+                    name: todoName,
+                    desc,
+                    unit,
+                    count,
+                    status
+                })
+            } else {
+                this.props.addTodo({
+                    name: todoName,
+                    desc,
+                    unit,
+                    count,
+                    status
+                }) 
+            }
+            
         }
         this.back()
     }
     render () {
-    const statusList = TODO_STATUS_NAME.map((status, index) => <li className={style['status-item']} key={index} onClick={() => this.updateTodoStatus(index)}>{status}</li>)
+    const statusList = TODO_STATUS_NAME.map((status, index) =>
+        <li className={[style['status-item'], status === TODO_STATUS_NAME_MAP[this.state.status] ? style['status-active'] : ''].join(' ')} key={index} 
+        onClick={() => this.updateTodoStatus(index)}>{status}</li>
+    )
         return (
             <div className={style['add-container']}>
                 <h3>{this.state.pageTitle}</h3>
@@ -115,7 +131,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateTode: (prop) => dispatch(updateTodo(prop)),
+        updateTodo: (prop) => dispatch(updateTodo(prop)),
         addTodo: (prop) => dispatch(addTodo(prop))
     }
 }

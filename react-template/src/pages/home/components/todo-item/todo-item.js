@@ -13,7 +13,7 @@ const TodoItem = (props) => {
         <Link to={target} className={style['todo-item-container']}>
             <div className={style.seq}>{props.index}</div>
             <div className={style.content}>{props.name}</div>
-            <div className={style.badget}>{TODO_STATUS_NAME[props.state || 0]}</div>
+            <div className={style.badget}>{TODO_STATUS_NAME[props.status || 0]}</div>
         </Link>
     )
 }
