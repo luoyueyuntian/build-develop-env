@@ -3,5 +3,3 @@ import { reduces } from './reduces'
 import initData from './data'
 
 export const store = createStore(reduces, initData)
-
-const unsubscribe = store.subscribe(() => console.log(store.getState()))

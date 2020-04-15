@@ -41,7 +41,7 @@ const updateTodo = (state, { todoId, name, desc, status, excepetTime }) => {
         if (desc) newItem.desc = desc
         if (status) newItem.status = status
         if (excepetTime) newItem.excepetTime = excepetTime
-        return newItems
+        return newItem
     })
 }
 

@@ -51,7 +51,7 @@ const TodeDetailComonent = props => {
     return (
         <div className={style['todo-item']}>
             <p className={style.title}>详细描述：</p>
-            <textarea defaultValue={props.detail} onInput={e => props.inputTodeDetail(e.target.value)}></textarea>
+            <textarea defaultValue={props.detail} onInput={e => props.inputTodeDetail(e.target.value)}/>
         </div>
     )
 }

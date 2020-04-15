@@ -22,12 +22,14 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
+                use: [{
                     loader: 'babel-loader',
                     options: {
                         presets: [require.resolve('babel-preset-react-app')]
                     }
-                }
+                }, {
+                    loader: 'eslint-loader'
+                }]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,

@@ -7,10 +7,6 @@ import TodoItem from './components/todo-item/todo-item'
 import style from './home.less'
 
 class Home extends React.Component {
-    constructor (props) {
-        super(props)
-    }
-
     render () {
         const list = this.props.todoList.map((item, index) => <TodoItem key={index} index={index} {...item}/>)
         const filter = ['未开始', '进行中', '搁置中', '已完成'].map((item, index) => (
