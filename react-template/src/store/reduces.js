@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX } from './action-types'
+import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX, SET_FILTER_STATUS } from './action-types'
 import { generateTodoId } from '../common/utils/index'
 
 /**
@@ -61,6 +61,11 @@ const setEditIndexReduce = (state = { editIndex: - 1 }, { type, index }) => {
     }
 }
 
+/**
+ * 待办事项reduce
+ * @param {*} state 
+ * @param {*} action 
+ */
 const todoReduce = (state = [], action) => {
     switch (action.type) {
         case ADD_TODO: 
@@ -74,7 +79,25 @@ const todoReduce = (state = [], action) => {
     }
 }
 
+/**
+ * 过滤待办事项
+ * @param {*} state 
+ * @param {*} action 
+ */
+const setFilterStatus = (state = -1, action) => {
+    switch (action.type) {
+        case SET_FILTER_STATUS:
+            return isNaN(action.status) ? state : action.status
+        default:
+            return state
+    }
+}
+
+/**
+ * 整体reducer
+ */
 export const reduces = combineReducers({
     todos: todoReduce,
-    editIndex: setEditIndexReduce
+    editIndex: setEditIndexReduce,
+    filterStatus: setFilterStatus
 })

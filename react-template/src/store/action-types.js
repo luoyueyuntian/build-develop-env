@@ -9,3 +9,6 @@ export const UPDATE_TODO = 'UPDATE_TODO'
 
 // 设置编辑的待办事项在所有事项中的序号
 export const SET_EDIT_INDEX = 'SET_EDIT_INDEX'
+
+// 设置过滤条件
+export const SET_FILTER_STATUS = 'SET_FILTER_STATUS'

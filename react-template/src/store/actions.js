@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX } from './action-types'
+import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX, SET_FILTER_STATUS } from './action-types'
 
 /**
  * 增加待完成事项
@@ -53,5 +53,12 @@ export const setEditIndex = (index) => {
     return {
         type: SET_EDIT_INDEX,
         index
+    }
+}
+
+export const setFilterStauts = (status) => {
+    return {
+        type: SET_FILTER_STATUS,
+        status
     }
 }
