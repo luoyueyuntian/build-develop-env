@@ -12,3 +12,5 @@ react项目，非脚手架创建项目，使用webpack构建，支持
 + 打包时公共代码提取
 + css modules 支持组件样式隔离
 + eslint代码静态检查
++ 引入axios作为ajax请求方法
++ 支持接口数据mock

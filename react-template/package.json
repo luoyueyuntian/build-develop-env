@@ -34,8 +34,10 @@
         "webpack-merge": "^4.2.2"
     },
     "dependencies": {
+        "axios": "^0.19.2",
         "eslint-loader": "^4.0.0",
         "eslint-plugin-react": "^7.19.0",
+        "mockjs": "^1.1.0",
         "normalize.css": "^8.0.1",
         "prop-types": "^15.7.2",
         "react": "^16.13.1",

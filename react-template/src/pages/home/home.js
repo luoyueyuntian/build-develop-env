@@ -4,13 +4,12 @@ import { connect } from 'react-redux'
 
 import { setFilterStauts } from '../../store/actions'
 
-
 import TodoItem from './components/todo-item/todo-item'
 import style from './home.less'
 
 const Home = (props) => {
     const list = props.todoList.map((item, index) => <TodoItem key={index} index={index} {...item}/>)
-    const filter = ['所有', '未开始', '进行中', '搁置中', '已完成'].map((item, index) => {
+    const filter = ['所有', '未开始', '进行中', '搁置中', '已取消', '已完成'].map((item, index) => {
         let calssName = [style.status]
         if (props.filterStatus < 0 && index === 0) {
             calssName.push(style['status-active'])
