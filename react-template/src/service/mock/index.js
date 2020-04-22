@@ -13,8 +13,8 @@ Mock.mock('/todo/history/get', 'get', () => {
     for (let i = 0; i < length; i++) {
         const item = {
             id: startId++,
-            name: Mock.Random.csentence(5),
-            desc: Mock.Random.csentence(22),
+            name: Mock.Random.cword(5, 12),
+            desc: Mock.Random.csentence(22, 63),
             unit: ['小时','天','周','月','年'][Mock.Random.natural(0,4)],
             count: Mock.Random.natural(1,15),
             status: Mock.Random.natural(0,4),

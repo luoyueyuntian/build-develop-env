@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX, SET_FILTER_STATUS } from './action-types'
+import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX, SET_FILTER_STATUS, SET_DATA_READY } from './action-types'
 
 /**
  * 增加待完成事项
@@ -60,5 +60,11 @@ export const setFilterStauts = (status) => {
     return {
         type: SET_FILTER_STATUS,
         status
+    }
+}
+
+export const setDataReadyStatus = () => {
+    return {
+        type: SET_DATA_READY
     }
 }

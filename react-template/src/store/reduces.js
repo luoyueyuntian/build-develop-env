@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX, SET_FILTER_STATUS } from './action-types'
+import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX, SET_FILTER_STATUS, SET_DATA_READY } from './action-types'
 import { generateTodoId } from '../common/utils/index'
 import { TODO_STATUS } from '../common/constant/index'
 
@@ -101,10 +101,23 @@ const setFilterStatus = (state = -1, action) => {
 }
 
 /**
+ * 设置数据为已经加载完成
+ */
+const setDataIsReady = (state = false, action) => {
+    switch (action.type) {
+        case SET_DATA_READY:
+            return true
+        default:
+            return state
+    }
+}
+
+/**
  * 整体reducer
  */
 export const reduces = combineReducers({
     todos: todoReduce,
     editIndex: setEditIndexReduce,
-    filterStatus: setFilterStatus
+    filterStatus: setFilterStatus,
+    dataIsReady: setDataIsReady
 })

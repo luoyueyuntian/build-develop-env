@@ -4,13 +4,15 @@ import { connect } from 'react-redux'
 import { TODO_STATUS } from '../../../common/constant/index'
 
 import style from './event-done-history.less'
-
+import Loading from '../../../components/loading/loading'
 import Event from '../components/event/event'
 
 const EventCreateHistory = (props) => {
     const list = props.events.map((item, index) => <Event key={item.id} index={index} {...item}/>)
     return (
-        <ul className={style['list-container']}>{list} </ul>
+        <Loading>
+            <ul className={style['list-container']}>{list}</ul>
+        </Loading>
     )
 }
 

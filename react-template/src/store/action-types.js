@@ -12,3 +12,6 @@ export const SET_EDIT_INDEX = 'SET_EDIT_INDEX'
 
 // 设置过滤条件
 export const SET_FILTER_STATUS = 'SET_FILTER_STATUS'
+
+// 修改数据初始化状态
+export const SET_DATA_READY = 'SET_DATA_READY'
