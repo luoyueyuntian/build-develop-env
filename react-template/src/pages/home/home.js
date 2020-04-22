@@ -22,6 +22,7 @@ const Home = (props) => {
     })
     return (
         <div className={style.container}>
+            <Link to="/history" className={style['history-link']}>查看记录</Link>
             <h3 className={style.title}>所有事项：</h3>
             <ul className={style['status-list']}>{filter}</ul>
             {list}

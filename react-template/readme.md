@@ -3,7 +3,7 @@ react项目，非脚手架创建项目，使用webpack构建，支持
 
 支持特性：
 + redux
-+ react-router，申明式导航和脚本控制导航
++ react-router，申明式导航和脚本控制导航，嵌套路由
 + 使用Less书写样式
 + 函数组件、类组件
 + 组件propType检查

@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    .line {
+        width: 30px;
+        margin-left: 15px;
+        border-left: 1px solid #aaa;
+        &:after {
+            content: attr(index);
+            display: inline-block;
+            margin-left: -15px;
+            line-height: 30px;
+            width: 30px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #0099ff;
+            color: #fff;
+        }
+    }
+    &:last-child {
+        .line {
+            border: 0;
+        }
+    }
+}
+.time {
+    width: 180px;
+    padding-right: 10px;
+    line-height: 30px;
+    text-align: right;
+}
+.content {
+    p {
+        padding: 0;
+        margin: 0;
+    }
+    .title {
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+    .content {
+        padding-bottom: 20px;
+    }
+}

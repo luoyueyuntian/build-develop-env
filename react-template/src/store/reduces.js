@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX, SET_FILTER_STATUS } from './action-types'
 import { generateTodoId } from '../common/utils/index'
+import { TODO_STATUS } from '../common/constant/index'
 
 /**
  * 添加事件
@@ -14,7 +15,8 @@ const addTodo = (state, newTodo) => {
         desc: newTodo.desc,
         unit: newTodo.unit,
         count: newTodo.count,
-        status: newTodo.status
+        status: newTodo.status,
+        createTime: Date.now()
     })
 }
 
@@ -38,7 +40,12 @@ const updateTodo = (state, { id, name, desc, unit, count, status }) => {
         let newItem = { ...item }
         if (name) newItem.name = name
         if (desc) newItem.desc = desc
-        if (status) newItem.status = status
+        if (item.status !== TODO_STATUS.DONE && status) {
+            newItem.status = status
+            if (status === TODO_STATUS.DONE) {
+                newItem.doneTime = Date.now()
+            }
+        }
         if (unit) newItem.unit = unit
         if (count) newItem.count = count
         return newItem

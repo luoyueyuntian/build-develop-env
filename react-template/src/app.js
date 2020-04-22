@@ -9,6 +9,7 @@ import {
 import Home from './pages/home/home'
 import EditTodo from './pages/edit-todo/eidt-todo'
 import NotFound from './pages/not-found/not-found'
+import History from './pages/history/history'
 
 class App extends React.Component {
     constructor (props) {
@@ -18,8 +19,8 @@ class App extends React.Component {
     }
     render () {
         return (
-            <Router>
-                <Switch>
+        <Router>
+            <Switch>
                 <Route path="/home">
                     <Home/>
                 </Route>
@@ -28,6 +29,9 @@ class App extends React.Component {
                 </Route>
                 <Route path="/edit">
                     <EditTodo/>
+                </Route>
+                <Route path="/history">
+                    <History/>
                 </Route>
                 <Route path="/">
                     <NotFound/>
