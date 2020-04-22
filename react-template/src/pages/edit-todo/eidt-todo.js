@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
-import { TODO_STATUS_NAME, TODO_STATUS_NAME_MAP } from '../../common/constant/index'
+import { TODO_STATUS, TODO_STATUS_NAME, TODO_STATUS_NAME_MAP } from '../../common/constant/index'
 import { addTodo, updateTodo } from '../../store/actions'
 
 import TodoEditComponent from '../../components/todo-edit-component/todo-edit-component'
@@ -60,6 +60,7 @@ class EditTodoComponent extends React.Component {
         })
     }
     updateTodoStatus (status) {
+        if (this.state.status === TODO_STATUS.DONE) return
         this.setState({
             status
         })
@@ -102,10 +103,10 @@ class EditTodoComponent extends React.Component {
         this.back()
     }
     render () {
-    const statusList = TODO_STATUS_NAME.map((status, index) =>
-        <li className={[style['status-item'], status === TODO_STATUS_NAME_MAP[this.state.status] ? style['status-active'] : ''].join(' ')} key={index} 
-        onClick={() => this.updateTodoStatus(index)}>{status}</li>
-    )
+        const statusList = TODO_STATUS_NAME.map((status, index) =>
+            <li className={[style['status-item'], status === TODO_STATUS_NAME_MAP[this.state.status] ? style['status-active'] : '', index < TODO_STATUS_NAME.length - 1 && this.state.status === TODO_STATUS.DONE ? style.disabled : ''].join(' ')} key={index} 
+            onClick={() => this.updateTodoStatus(index)}>{status}</li>
+        )
         return (
             <div className={style['add-container']}>
                 <h3>{this.state.pageTitle}</h3>
