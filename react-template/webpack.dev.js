@@ -13,10 +13,17 @@ module.exports = merge(baseConfig, {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
+        index: './src/index.html',
         hot: true,
         open: true,
+        openPage: 'home',
         historyApiFallback: true,
         port: 8800
+    },
+    output: {
+        filename: '[name].[hash].js',
+        chunkFilename: '[name].[chunkhash].js',
+        path: path.resolve(__dirname, 'dist')
     },
     plugins: [
         new CleanWebpackPlugin(),

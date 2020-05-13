@@ -56,10 +56,5 @@ module.exports = {
             maxInitialRequests: 4,
             automaticNameDelimiter: '~'
         }
-    },
-    output: {
-        filename: '[name].[hash].js',
-        chunkFilename: '[name].[chunkhash].js',
-        path: path.resolve(__dirname, 'dist')
     }
 }

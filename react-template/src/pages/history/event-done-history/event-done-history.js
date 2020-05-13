@@ -1,4 +1,8 @@
-import React from 'react'
+/***************************************************************
+ * 主要内容同  event-create-history  相同，主要是为了演示路由嵌套
+ ***************************************************************/
+
+ import React from 'react'
 import { connect } from 'react-redux'
 
 import { TODO_STATUS } from '../../../common/constant/index'
