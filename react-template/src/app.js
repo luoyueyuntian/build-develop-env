@@ -18,7 +18,7 @@ class App extends React.Component {
         }
     }
     render () {
-        const basename = process.env.NODE_ENV === 'production' ? '/webapp' : '/'
+        const basename = '/webapp'
         return (
         <Router basename={basename}>
             <Switch>

@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+    context: path.resolve('./'),
     entry: path.resolve('./src/index.js'),
     module: {
         rules: [
@@ -56,5 +57,11 @@ module.exports = {
             maxInitialRequests: 4,
             automaticNameDelimiter: '~'
         }
+    },
+    output: {
+        filename: '[name].[hash].js',
+        chunkFilename: '[name].[chunkhash].js',
+        path: path.resolve(__dirname, 'dist'),
+		publicPath: "/webapp"
     }
 }
