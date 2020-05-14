@@ -16,7 +16,7 @@ const addTodo = (state, newTodo) => {
         unit: newTodo.unit,
         count: newTodo.count,
         status: newTodo.status,
-        createTime: Date.now()
+        createTime: newTodo.createTime
     })
 }
 

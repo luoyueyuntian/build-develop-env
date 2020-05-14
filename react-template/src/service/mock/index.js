@@ -18,7 +18,7 @@ Mock.mock('/todo/history/get', 'get', () => {
             unit: ['小时','天','周','月','年'][Mock.Random.natural(0,4)],
             count: Mock.Random.natural(1,15),
             status: Mock.Random.natural(0,4),
-            createTime: Date.now() - Mock.Random.natural(10000,100000000)
+            createTime: Date.now() - Mock.Random.natural(0,8640000000)
         }
         const unitTimeMap = {
             '小时': 60 * 60 * 1000,

@@ -4,14 +4,15 @@ import { ADD_TODO, DELETE_TODO, UPDATE_TODO, SET_EDIT_INDEX, SET_FILTER_STATUS, 
  * 增加待完成事项
  * @param {object} param0 
  */
-export const addTodo = ({ name, desc, unit, count, status }) => {
+export const addTodo = ({ name, desc, unit, count, status, createTime }) => {
     return {
         type: ADD_TODO,
         name,
         desc,
         unit,
         count,
-        status
+        status,
+        createTime
     }
 }
 
