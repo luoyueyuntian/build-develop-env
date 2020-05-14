@@ -101,12 +101,18 @@ webpack只能处理js文件，对于`html`、`css`、`png\jpg\gif`等其他文�
 <pre><code>devServer: {
     hot: true,
     open: true,
+    historyApiFallback: {
+            rewrites: [
+                { from: /^\/webapp\//, to: '/webapp/index.html' },
+            ]
+        },
     port: 8800
 },
 devtool: 'inline-source-map'
 </code></pre>
 + `hot: true`表示启用 webpack 的模块热替换特性，当文件修改后，webpack自动编译更新后会自动替换文件内容，浏览器不需要刷新就可以看到修改后的效果
 + `open: true`表示启动`webpack-dev-server`后自动打开浏览器，并加载默认页面
++ `historyApiFallback`：当使用 HTML5 History API 时，对所有的 404 响应的使用默认的`index.html`作为响应，这个对于单页面应用十分有用。也可以按照规则对不同的404请求做一个映射，来实现更精准的控制
 + `port: 8800`表示打开的端口，可以不配置，`webpack-dev-server`会自动使用一个未使用的端口来加载页面
 
 `devtool`是用来控制生产`source map`的工具，在开发环境时，我们需要使用source map来定位出问题的代码行数，生产环境则可以不用生成source map，或者生成少量的source map。
@@ -114,7 +120,7 @@ devtool: 'inline-source-map'
 
 其他一些有用的配置：
 + `https: true`: 使用https协议
-+ `openPage: '/different/page'`: 指定启动`webpack-dev-server`时，打开的浏览器默认页面路径
++ `openPage: '/webapp/page'`: 指定启动`webpack-dev-server`时，打开的浏览器默认页面路径
 + `proxy: { "/api": "http://localhost:3000" }`: 可以将请求代理到服务器，一般都需要配置这个，可以将本地的后端请求转发到指定的服务器，这样就可以前端代码使用本地开发环境编译的代码，后端服务使用远程服务器上的，类似的也可以使用nginx，不过修改后要每次编译替换静态资源文件，并且要自己手动刷新页面，没有这个方便。
 
 ##### 配置打包输出
